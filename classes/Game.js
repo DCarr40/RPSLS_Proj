@@ -26,11 +26,17 @@ class Game {
 
       displayGameWinner() {
         if(this.playerOne.score > this.playerTwo.score) {
-          console.log(this.playerOne.name + " wins this game!");
+          console.log(`${this.playerOne.name} wins this game!`);
         }
         else {
-          console.log(this.playerTwo.name + " wins this game!");
+          console.log(`${this.playerTwo.name} wins this game!`);
         }
+        console.log("test");
+      }
+
+      runGame(){
+          this.displayRules();
+          this.displayGameWinner();
       }
     
 }
