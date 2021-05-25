@@ -20,7 +20,7 @@ class Ai extends Player {
         else if (aiChoice <= 0.8) { aiChoice = "lizard"; }
         else { aiChoice = "spock"; }
 
-        console.log("The computer chose " + aiChoice);
+        console.log(`The computer chose: ${aiChoice}`);
         return this.AiChoice = aiChoice;
     }
 

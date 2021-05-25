@@ -14,8 +14,8 @@ class Human extends Player{
     }
 
     chooseGesture(){
-        playerChoice = this.promptFor("Do you choose rock, paper, scissors, lizard, or spock?", this.chars);
-        console.log("The computer chose " + playerChoice);
+        playerChoice = this.promptFor("Please choose either rock, paper, scissors, lizard, or spock?", this.chars);
+        console.log(`The player chose: ${playerChoice}`);
         return this.playerChoice = playerChoice;
     }
     
