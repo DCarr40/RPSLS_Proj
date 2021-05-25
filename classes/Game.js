@@ -24,6 +24,13 @@ class Game {
         console.log("The first player to score 2 points will win the game!");
       }
 
-
+      displayGameWinner() {
+        if(this.playerOne.score > this.playerTwo.score) {
+          console.log(this.playerOne.name + " wins this game!");
+        }
+        else {
+          console.log(this.playerTwo.name + " wins this game!");
+        }
+      }
     
 }
