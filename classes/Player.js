@@ -13,10 +13,10 @@ class Player {
     }
 
     chooseGesture(){
-        let userChoice = prompt(`Do you choose rock, paper, scissors, lizard, or spock?`);
-        return userChoice;
+        let playerChoice = prompt(`Do you choose rock, paper, scissors, lizard, or spock?`);
+        return playerChoice;
     }
-
-
+  
+    
 
 }
