@@ -2,7 +2,7 @@
 
 const Player = require('./Player');
 
-class AI extends Player {
+class Ai extends Player {
 
     constructor(name, score){
         super(name, score);

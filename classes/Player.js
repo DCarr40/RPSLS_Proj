@@ -12,9 +12,11 @@ class Player {
         console.log(`${this.name}'s score is: ${this.score}`)
     }
 
-    chooseGesture(){
-        let playerChoice = prompt(`Do you choose rock, paper, scissors, lizard, or spock?`);
-        return playerChoice;
+    promptFor(question, valid) {
+        do {
+            var response = prompt(question).trim();
+        } while (!response || !valid(response));
+        return response;
     }
   
     
