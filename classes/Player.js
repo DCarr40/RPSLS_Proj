@@ -19,7 +19,9 @@ class Player {
         return response;
     }
   
-    
+    chars(input) {
+        return true; // default validation only
+    }
 
 }
 
