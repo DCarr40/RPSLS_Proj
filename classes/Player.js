@@ -1,4 +1,6 @@
 "use strict"
+const Human = require('./Human');
+const Ai = require('./AI');
 
 class Player {
 

@@ -1,5 +1,7 @@
 "use strict"
 
+const Player = require('./Player');
+
 class Game {
 
     constructor(game) {

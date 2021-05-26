@@ -1,5 +1,4 @@
 "use strict"
-const Player = require ('./Player');
 
 class Human extends Player{
 
@@ -21,3 +20,5 @@ class Human extends Player{
     
 
 }
+
+module.exports.Human = Human;;
