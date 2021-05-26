@@ -1,10 +1,12 @@
 "use strict"
 
+const prompt = require('prompt-sync')();
+const { Player } = require("./Player");
+
 class Human extends Player{
 
     constructor(name, score){
         super(name, score);
-        this.playerChoice = "";
     }
 
 
@@ -13,12 +15,12 @@ class Human extends Player{
     }
 
     chooseGesture(){
-        playerChoice = this.promptFor("Please choose either rock, paper, scissors, lizard, or spock?", this.chars);
-        console.log(`The player chose: ${playerChoice}`);
-        return this.playerChoice = playerChoice;
+        this.gesturePick = prompt("Please choose either rock, paper, scissors, lizard, or spock?");
+        console.log(`The player chose: ${this.gesturePick}`);
+        return this.gesturePick;
     }
     
 
 }
 
-module.exports.Human = Human;;
+module.exports.Human = Human;

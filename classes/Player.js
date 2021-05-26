@@ -6,7 +6,9 @@ class Player {
 
     constructor(name, score) {
         this.name = name;
-        this.score = score;
+        this.score = 0;
+        this.gestureArray = ["rock","paper","scissors","lizard", "spock"];
+        this.gesturePick;
     }
 
 
@@ -81,4 +83,4 @@ class Player {
     }
 }
 
-module.exports = Player
+module.exports.Player = Player;

@@ -1,6 +1,6 @@
 "use strict"
 
-const Player = require('./Player');
+const {Player} = require('./Player');
 
 class Game {
 
@@ -27,11 +27,11 @@ class Game {
       }
 
       displayGameWinner() {
-        if(this.playerOne.score > this.playerTwo.score) {
-          console.log(`${this.playerOne.name} wins this game!`);
+        if(Player.score > Player.score) {
+          console.log(`${this.Player.name} wins this game!`);
         }
         else {
-          console.log(`${this.playerTwo.name} wins this game!`);
+          console.log(`${this.Player.name} wins this game!`);
         }
         console.log("test");
       }
@@ -39,8 +39,12 @@ class Game {
       runGame(){
           this.displayRules();
           this.displayGameWinner();
+          //console.log(Player.score);
       }
     
+      yesNo(input) {
+        return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
+    }
 }
 
-module.exports.Game = Game
+module.exports.Game = Game;

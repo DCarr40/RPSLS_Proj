@@ -1,28 +1,25 @@
 "use strict"
 
+const { Player } = require("./Player");
+
+
 class Ai extends Player {
 
-    constructor(name, score){
+    constructor(name, score) {
         super(name, score);
-        this.AiChoice = aiChoice;
     }
-
 
 
     chooseGesture() {
-        let aiChoice = Math.random();
+        let random = Math.floor(Math.random() * 5);
 
-        if (aiChoice < 0.2) { aiChoice = "rock"; }
-        else if (aiChoice <= 0.4) { aiChoice = "paper"; }
-        else if (aiChoice <= 0.6) { aiChoice = "scissors"; }
-        else if (aiChoice <= 0.8) { aiChoice = "lizard"; }
-        else { aiChoice = "spock"; }
+        this.gesturePick = this.gestureArray[random];
 
-        console.log(`The computer chose: ${aiChoice}`);
-        return this.AiChoice = aiChoice;
+        console.log(`The computer chose: ${this.gesturePick}`);
+        return this.gesturePick;
     }
 
-    
+
 }
 
 module.exports.Ai = Ai;
