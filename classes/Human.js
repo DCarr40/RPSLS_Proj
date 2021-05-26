@@ -16,7 +16,7 @@ class Human extends Player {
 
     chooseGesture() {
         this.gesturePick = prompt("Please choose either rock, paper, scissors, lizard, or spock?");
-        console.log(`The player chose: ${this.gesturePick}`);
+        
         switch (this.gesturePick) { 
             case "rock":
                 this.gesturePick = 0;
@@ -34,6 +34,11 @@ class Human extends Player {
                 this.gesturePick = 3;
                 break;
         }
+
+        this.gesturePick = this.gestureArray[this.gesturePick];
+
+        console.log(`The player chose: ${this.gesturePick}`);
+        
         return this.gesturePick;
     }
     
