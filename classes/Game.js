@@ -7,6 +7,7 @@ class Game {
     constructor() {
         this.player1 = new Player("Player 1");
         this.player2 = new Player("Player 2");
+        this.roundArray = [1,2,3];
     }
 
     displayRules() {
@@ -40,7 +41,7 @@ class Game {
     runGame() {
         this.displayRules();
         this.displayGameWinner();
-        //console.log(Player.score);
+
     }
 
     displayScore() {
@@ -101,5 +102,35 @@ class Game {
         };
         compare(userChoice, computerChoice);
     }
+
+    increaseScore(){
+        while(this.player1.score < 3 && this.player2.score < 3) {
+            let playerOneTotal = this.playerOne.rollAllDice(this.dice);
+            let playerTwoTotal = this.playerTwo.rollAllDice(this.dice);
+      
+            if(playerOneTotal > playerTwoTotal) {
+              console.log(this.playerOne.name + " wins this round!");
+              this.playerOne.score++;
+            }
+            else if(playerTwoTotal > playerOneTotal) {
+              console.log(this.playerTwo.name + " wins this round!");
+              this.playerTwo.score++;
+            }
+            else {
+              console.log("Wow! You managed to tie after each rolling " + this.dice.length + " dice!");
+            }
+          }
+    }
+
+    playAllRounds(roundArray) {
+        let runningTotal = 0;
+    
+        for(let i = 0; i < diceArray.length; i++) {
+          let result = this.rollDie(diceArray[i]);
+          runningTotal += result;
+        }
+    
+        return runningTotal;
+      }
 }
 module.exports.Game = Game;
