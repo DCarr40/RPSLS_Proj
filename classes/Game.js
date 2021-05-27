@@ -22,7 +22,7 @@ class Game {
         this.player1.chooseGesture();
         this.player2.chooseGesture();
         this.roundGestureComparison();
-        this.displayRoundWinnerAndIncreaseScore();
+        this.scoreDisplay();
     }
 
     displayRules() {
@@ -107,7 +107,7 @@ class Game {
         }
     }
 
-    displayRoundWinnerAndIncreaseScore(){
+    scoreDisplay(){
         if(this.roundWinner === "player 1 wins this round"){this.player1.score++; console.log("Player 1 scored 1 point");return this.player1.score;}
         else{this.player2.score++;console.log("Player 2 scored 1 point");return this.player2.score;}
     }
