@@ -12,6 +12,33 @@ class Game {
         this.roundArray = [1,2,3];  
     }
 
+    runGame() {
+        this.displayRules();
+        //this.displayGameWinner();
+        this.player1Selection();
+        this.player2Selection();
+        this.player1.chooseGesture();
+        this.player2.chooseGesture();
+    }
+
+    displayRules() {
+        console.log("Welcome to Rock,Paper,Scissors,Lizard,Spock!");
+        console.log("Two players will chose either rock, paper, scissors, lizard, or Spock.");
+        console.log("A player will win a round depending on wheter the gesture they chose beats the other players gesture.");
+        console.log("Scissors cuts Paper");
+        console.log("Scissors decapitates Lizard");
+        console.log("Rock crushes Lizard");
+        console.log("Rock crushes Scissors");
+        console.log("Paper covers Rock");
+        console.log("Paper disproves Spock");
+        console.log("Lizard poisons Spock");
+        console.log("Lizard eats Paper");
+        console.log("Spock vaporizes Rock");
+        console.log("Spock smashes Scissors");
+        console.log("The player that wins a round will have a point added to their score");
+        console.log("The first player to score 2 points will win the game!");
+    }
+
     player1Selection(){
         this.player1 = parseInt(prompt("Do you want player 1 to be Human or AI? Please type 1 for Human or 2 for AI"));
         switch(this.player1){
@@ -40,26 +67,10 @@ class Game {
         }
         return this.player2;
     }
+}
 
-    displayRules() {
-        console.log("Welcome to Rock,Paper,Scissors,Lizard,Spock!");
-        console.log("Two players will chose either rock, paper, scissors, lizard, or Spock.");
-        console.log("A player will win a round depending on wheter the gesture they chose beats the other players gesture.");
-        console.log("Scissors cuts Paper");
-        console.log("Scissors decapitates Lizard");
-        console.log("Rock crushes Lizard");
-        console.log("Rock crushes Scissors");
-        console.log("Paper covers Rock");
-        console.log("Paper disproves Spock");
-        console.log("Lizard poisons Spock");
-        console.log("Lizard eats Paper");
-        console.log("Spock vaporizes Rock");
-        console.log("Spock smashes Scissors");
-        console.log("The player that wins a round will have a point added to their score");
-        console.log("The first player to score 2 points will win the game!");
-    }
 
-    displayGameWinner() {
+/*     displayGameWinner() {
         if (this.player1.score > this.player2.score) {
             console.log(`${this.player1.name} wins this game!`);
         }
@@ -67,16 +78,9 @@ class Game {
             console.log(`${this.player2.name} wins this game!`);
         }
         console.log("test");
-    }
+    } */
 
-    runGame() {
-        this.displayRules();
-        //this.displayGameWinner();
-        this.player1Selection();
-        this.player2Selection();
-        
 
-    }
 
 /*     displayScore() {
         console.log(`${this.player1.g}'s score is: ${this.player1.score}`)
@@ -170,5 +174,15 @@ class Game {
     
         return runningTotal;
     } */
-}
+
+    /*     bothPlayerGestureSelection(){
+        this.player1.chooseGesture();
+        this.player2.chooseGesture();
+    }
+
+   bothPlayerHumanAiSelection(){
+        this.player1Selection();
+        this.player2Selection();
+    } */
+
 module.exports.Game = Game;

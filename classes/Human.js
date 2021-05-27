@@ -27,10 +27,10 @@ class Human extends Player {
             case "scissors":
                 this.gesturePick = 2;
                 break;
-            case "rock":
+            case "lizard":
                 this.gesturePick = 3;
                 break;
-            case "rock":
+            case "spock":
                 this.gesturePick = 3;
                 break;
         }
@@ -38,7 +38,7 @@ class Human extends Player {
         this.gesturePick = this.gestureArray[this.gesturePick];
 
         console.log(`The player chose: ${this.gesturePick}`);
-        
+
         return this.gesturePick;
     }
     

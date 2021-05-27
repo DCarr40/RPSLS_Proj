@@ -1,5 +1,5 @@
 "use strict"
-
+const {Math} = require("Math")();
 const { Player } = require("./Player");
 
 
