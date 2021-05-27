@@ -12,17 +12,19 @@ class Game {
         this.roundWinner = "";
         this.player1Choice;
         this.player2Choice;
-        //this.roundArray = [1,2,3];  
+        this.roundArray = [1,2,3];  
     }
 
     runGame() {
-        this.displayRules();
-        this.player1Selection();
-        this.player2Selection();
-        this.player1.chooseGesture();
-        this.player2.chooseGesture();
-        this.roundGestureComparison();
-        this.scoreDisplay();
+        for(let i = 0; i < this.roundWinner.length;i++){
+            this.displayRules();
+            this.player1Selection();
+            this.player2Selection();
+            this.player1.chooseGesture();
+            this.player2.chooseGesture();
+            this.roundGestureComparison();
+            this.scoreDisplay();
+        }
     }
 
     displayRules() {
@@ -108,10 +110,10 @@ class Game {
     }
 
     scoreDisplay(){
-        if(this.roundWinner === "player 1 wins this round"){this.player1.score++; console.log("Player 1 scored 1 point");return this.player1.score;}
-        else{this.player2.score++;console.log("Player 2 scored 1 point");return this.player2.score;}
+        if(this.roundWinner === "player 1 wins this round"){this.player1.score++; console.log("Player 1 scored 1 point and won this round!");return this.player1.score;}
+        else{this.player2.score++;console.log("Player 2 scored 1 point and won this round!");return this.player2.score;}
     }
- 
+
 }
 
 module.exports.Game = Game;
