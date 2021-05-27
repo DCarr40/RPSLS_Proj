@@ -22,6 +22,7 @@ class Game {
         this.player1.chooseGesture();
         this.player2.chooseGesture();
         this.roundGestureComparison();
+        this.displayRoundWinnerAndIncreaseScore();
     }
 
     displayRules() {
@@ -82,35 +83,33 @@ class Game {
             }
         }
         
-
         switch(this.player1.gesturePick){
             case "rock":
                 if(this.player2.gesturePick === "scissors" || this.player2.gesturePick === "lizard"){this.roundWinner = "player 1 wins this round"}
-                else{roundWinner = "player 2 wins this round"; this.player2.score++;}
+                else{this.roundWinner = "player 2 wins this round"; this.player2.score++;}
                 return this.roundWinner;
             case "paper":
                 if(this.player2.gesturePick === "rock" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
-                else{roundWinner = "player 2 wins this round"; this.player2.score++;}
+                else{this.roundWinner = "player 2 wins this round"; this.player2.score++;}
                 return this.roundWinner;
             case "scissors":
                 if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "lizard"){ this.roundWinner = "player 1 wins this round"}
-                else{roundWinner = "player 2 wins this round"; this.player2.score++;}
+                else{this.roundWinner = "player 2 wins this round"; this.player2.score++;}
                 return this.roundWinner;
             case "lizard":
                 if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
-                else{roundWinner = "player 2 wins this round"; }
+                else{this.roundWinner = "player 2 wins this round"; }
                 return this.roundWinner;
             case "spock":
                 if(this.player2.gesturePick === "rock" || this.player2.gesturePick === "scissors"){this.roundWinner = "player 1 wins this round"}
-                else{roundWinner = "player 2 wins this round"}
+                else{this.roundWinner = "player 2 wins this round"}
                 return this.roundWinner;       
         }
+    }
 
-        if(this.roundWinner === "player 1 wins this round"){this.player1.score++; console.log(this.player1.score);}
-        else{this.player2.score++;console.log(this.player2.score);}
-
-        console.log(this.roundWinner);
-
+    displayRoundWinnerAndIncreaseScore(){
+        if(this.roundWinner === "player 1 wins this round"){this.player1.score++; console.log("Player 1 scored 1 point");return this.player1.score;}
+        else{this.player2.score++;console.log("Player 2 scored 1 point");return this.player2.score;}
     }
  
 }
