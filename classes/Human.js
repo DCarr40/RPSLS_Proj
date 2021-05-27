@@ -31,14 +31,12 @@ class Human extends Player {
                 this.gesturePick = 3;
                 break;
             case "spock":
-                this.gesturePick = 3;
+                this.gesturePick = 4;
                 break;
         }
 
         this.gesturePick = this.gestureArray[this.gesturePick];
-
-        console.log(`The player chose: ${this.gesturePick}`);
-
+        console.log(`The human chose: ${this.gesturePick}`);
         return this.gesturePick;
     }
     

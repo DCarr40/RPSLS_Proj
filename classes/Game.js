@@ -9,16 +9,19 @@ class Game {
     constructor() {
         this.player1;
         this.player2;
-        this.roundArray = [1,2,3];  
+        this.roundWinner = "";
+        this.player1Choice;
+        this.player2Choice;
+        //this.roundArray = [1,2,3];  
     }
 
     runGame() {
         this.displayRules();
-        //this.displayGameWinner();
         this.player1Selection();
         this.player2Selection();
         this.player1.chooseGesture();
         this.player2.chooseGesture();
+        this.roundGestureComparison();
     }
 
     displayRules() {
@@ -62,12 +65,57 @@ class Game {
                 console.log("Welcome Human Player 2");
                 break;
             case 2:
-                this.player1 = new Ai("Player 2");
+                this.player2 = new Ai("Player 2");
                 console.log("Welcome AI Player 2");
         }
         return this.player2;
     }
+
+    roundGestureComparison() {
+
+    
+       if(this.player1.gesturePick === this.player2.gesturePick){
+            while(this.player1.gesturePick === this.player2.gesturePick){
+                console.log("And... It's a tie!");
+                this.player1.chooseGesture();
+                this.player2.chooseGesture();
+            }
+        }
+        
+
+        switch(this.player1.gesturePick){
+            case "rock":
+                if(this.player2.gesturePick === "scissors" || this.player2.gesturePick === "lizard"){this.roundWinner = "player 1 wins this round"}
+                else{roundWinner = "player 2 wins this round"; this.player2.score++;}
+                return this.roundWinner;
+            case "paper":
+                if(this.player2.gesturePick === "rock" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
+                else{roundWinner = "player 2 wins this round"; this.player2.score++;}
+                return this.roundWinner;
+            case "scissors":
+                if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "lizard"){ this.roundWinner = "player 1 wins this round"}
+                else{roundWinner = "player 2 wins this round"; this.player2.score++;}
+                return this.roundWinner;
+            case "lizard":
+                if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
+                else{roundWinner = "player 2 wins this round"; }
+                return this.roundWinner;
+            case "spock":
+                if(this.player2.gesturePick === "rock" || this.player2.gesturePick === "scissors"){this.roundWinner = "player 1 wins this round"}
+                else{roundWinner = "player 2 wins this round"}
+                return this.roundWinner;       
+        }
+
+        if(this.roundWinner === "player 1 wins this round"){this.player1.score++; console.log(this.player1.score);}
+        else{this.player2.score++;console.log(this.player2.score);}
+
+        console.log(this.roundWinner);
+
+    }
+ 
 }
+
+module.exports.Game = Game;
 
 
 /*     displayGameWinner() {
@@ -86,63 +134,9 @@ class Game {
         console.log(`${this.player1.g}'s score is: ${this.player1.score}`)
     } */
 
-/*     gestureComparison() {
-
-        
-            if (this.player1.choice === this.player2.choice) {
-                console.log("And... It's a tie!");
-            }
-
-
-            //If the user chose rock...
-            else if (this.player1.choice === "rock") {
-                switch(){
-
-                }
-                if (this.player2.choice === "scissors") { console.log("Rock wins!"); this.player1.score++; }
-                else if (this.player2.choice === "paper") { console.log("Paper wins!"); this.player2.score++;}
-                else if (this.player2.choice === "lizard") { console.log("Rock wins!"); this.player1.score++;}
-                else { console.log("Spock wins!"); this.player2.score++;}
-            }
-
-
-            //If the user chose paper...
-            else if (this.player1.choice === "paper") {
-                if (this.player2.choice === "scissors") { console.log("Scissors wins!"); this.player2.score++; }
-                else if (this.player2.choice === "rock") { console.log("Paper wins!"); this.player1.score++;}
-                else if (this.player2.choice === "lizard") { console.log("Lizard wins!"); this.player2.score++;}
-                else { console.log("Paper wins!"); this.player1.score++; }
-            }
-
-
-            //If the user chose scissors...
-            else if (this.player1.choice === "scissors") {
-                if (this.player2.choice === "paper") { console.log("Scissors wins!"); this.player1.score++; }
-                else if (this.player2.choice === "rock") { console.log("Rock wins!"); this.player2.score++; }
-                else if (this.player2.choice === "lizard") { console.log("Scissors wins!"); this.player1.score++; }
-                else { console.log("Spock wins!"); this.player2.score++;}
-            }
-
-
-            //If the user chose lizard...
-            else if (this.player1.choice === "lizard") {
-                if (this.player2.choice === "scissors") { console.log("Scissors wins!"); }
-                else if (this.player2.choice === "rock") { console.log("Rock wins!"); }
-                else if (this.player2.choice === "paper") { console.log("Lizard wins!"); }
-                else { console.log("Lizard wins!"); }
-            }
-
-
-            //If the user chose spock...
-            else if (this.player1.choice === "spock") {
-                if (this.player2.choice === "scissors") { console.log("Spock wins!"); }
-                else if (this.player2.choice === "rock") { console.log("Spock wins!"); }
-                else if (this.player2.choice === "lizard") { console.log("Lizard wins!"); }
-                else { console.log("Paper wins!"); }
-            }
-        }
-        compare(userChoice, computerChoice);
-    }
+   
+    
+    /*
 
     increaseScore(){
         while(this.player1.score < 3 && this.player2.score < 3) {
@@ -185,4 +179,3 @@ class Game {
         this.player2Selection();
     } */
 
-module.exports.Game = Game;

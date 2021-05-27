@@ -1,5 +1,5 @@
 "use strict"
-const {Math} = require("Math")();
+
 const { Player } = require("./Player");
 
 
@@ -15,7 +15,7 @@ class Ai extends Player {
 
         this.gesturePick = this.gestureArray[random];
 
-        console.log(`The computer chose: ${this.gesturePick}`);
+        console.log(`The Ai chose: ${this.gesturePick}`);
         return this.gesturePick;
     }
 
