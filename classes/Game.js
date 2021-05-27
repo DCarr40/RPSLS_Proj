@@ -1,13 +1,44 @@
 "use strict"
 
-const { Player } = require('./Player');
+const prompt = require('prompt-sync')();
+const { Human } = require('./Human');
+const { Ai } = require('./Ai');
 
 class Game {
 
     constructor() {
-        this.player1 = new Player("Player 1");
-        this.player2 = new Player("Player 2");
-        this.roundArray = [1,2,3];
+        this.player1;
+        this.player2;
+        this.roundArray = [1,2,3];  
+    }
+
+    player1Selection(){
+        this.player1 = parseInt(prompt("Do you want player 1 to be Human or AI? Please type 1 for Human or 2 for AI"));
+        switch(this.player1){
+            case 1:
+                this.player1 = new Human("Player 1");
+                console.log("Welcome Human Player 1");
+                break;
+            case 2:
+                this.player1 = new Ai("Player 1");
+                console.log("Welcome AI Player 1");
+                break;
+        }
+        return this.player1;
+    }
+
+    player2Selection(){
+        this.player2 = parseInt(prompt("Do you want player 2 to be Human or AI? Please type 1 for Human or 2 for AI"));
+        switch(this.player2){
+            case 1:
+                this.player2 = new Human("Player 2");
+                console.log("Welcome Human Player 2");
+                break;
+            case 2:
+                this.player1 = new Ai("Player 2");
+                console.log("Welcome AI Player 2");
+        }
+        return this.player2;
     }
 
     displayRules() {
@@ -40,66 +71,72 @@ class Game {
 
     runGame() {
         this.displayRules();
-        this.displayGameWinner();
+        //this.displayGameWinner();
+        this.player1Selection();
+        this.player2Selection();
+        
 
     }
 
-    displayScore() {
-        console.log(`${this.player1}'s score is: ${this.player1.score}`)
-    }
+/*     displayScore() {
+        console.log(`${this.player1.g}'s score is: ${this.player1.score}`)
+    } */
 
-    gestureComparison() {
+/*     gestureComparison() {
 
-        let compare = function (choice1, choice2) {
-            if (choice1 === choice2) {
+        
+            if (this.player1.choice === this.player2.choice) {
                 console.log("And... It's a tie!");
             }
 
 
             //If the user chose rock...
-            else if (choice1 === "rock") {
-                if (choice2 === "scissors") { console.log("Rock wins!"); }
-                else if (choice2 === "paper") { console.log("Paper wins!"); }
-                else if (choice2 === "lizard") { console.log("Rock wins!"); }
-                else { console.log("Spock wins!"); }
+            else if (this.player1.choice === "rock") {
+                switch(){
+
+                }
+                if (this.player2.choice === "scissors") { console.log("Rock wins!"); this.player1.score++; }
+                else if (this.player2.choice === "paper") { console.log("Paper wins!"); this.player2.score++;}
+                else if (this.player2.choice === "lizard") { console.log("Rock wins!"); this.player1.score++;}
+                else { console.log("Spock wins!"); this.player2.score++;}
             }
 
 
             //If the user chose paper...
-            else if (choice1 === "paper") {
-                if (choice2 === "scissors") { console.log("Scissors wins!"); }
-                else if (choice2 === "rock") { console.log("Paper wins!"); }
-                else if (choice2 === "lizard") { console.log("Lizard wins!"); }
-                else { console.log("Paper wins!"); }
+            else if (this.player1.choice === "paper") {
+                if (this.player2.choice === "scissors") { console.log("Scissors wins!"); this.player2.score++; }
+                else if (this.player2.choice === "rock") { console.log("Paper wins!"); this.player1.score++;}
+                else if (this.player2.choice === "lizard") { console.log("Lizard wins!"); this.player2.score++;}
+                else { console.log("Paper wins!"); this.player1.score++; }
             }
 
 
             //If the user chose scissors...
-            else if (choice1 === "scissors") {
-                if (choice2 === "paper") { console.log("Scissors wins!"); }
-                else if (choice2 === "rock") { console.log("Rock wins!"); }
-                else if (choice2 === "lizard") { console.log("Scissors wins!"); }
-                else { console.log("Spock wins!"); }
+            else if (this.player1.choice === "scissors") {
+                if (this.player2.choice === "paper") { console.log("Scissors wins!"); this.player1.score++; }
+                else if (this.player2.choice === "rock") { console.log("Rock wins!"); this.player2.score++; }
+                else if (this.player2.choice === "lizard") { console.log("Scissors wins!"); this.player1.score++; }
+                else { console.log("Spock wins!"); this.player2.score++;}
             }
 
 
             //If the user chose lizard...
-            else if (choice1 === "lizard") {
-                if (choice2 === "scissors") { console.log("Scissors wins!"); }
-                else if (choice2 === "rock") { console.log("Rock wins!"); }
-                else if (choice2 === "paper") { console.log("Lizard wins!"); }
+            else if (this.player1.choice === "lizard") {
+                if (this.player2.choice === "scissors") { console.log("Scissors wins!"); }
+                else if (this.player2.choice === "rock") { console.log("Rock wins!"); }
+                else if (this.player2.choice === "paper") { console.log("Lizard wins!"); }
                 else { console.log("Lizard wins!"); }
             }
 
 
             //If the user chose spock...
-            else if (choice1 === "spock") {
-                if (choice2 === "scissors") { console.log("Spock wins!"); }
-                else if (choice2 === "rock") { console.log("Spock wins!"); }
-                else if (choice2 === "lizard") { console.log("Lizard wins!"); }
+            else if (this.player1.choice === "spock") {
+                if (this.player2.choice === "scissors") { console.log("Spock wins!"); }
+                else if (this.player2.choice === "rock") { console.log("Spock wins!"); }
+                else if (this.player2.choice === "lizard") { console.log("Lizard wins!"); }
                 else { console.log("Paper wins!"); }
             }
-        };
+        }
         compare(userChoice, computerChoice);
     }
 
@@ -122,15 +159,16 @@ class Game {
           }
     }
 
-    playAllRounds(roundArray) {
+    playRound(roundArray) {
+
         let runningTotal = 0;
     
-        for(let i = 0; i < diceArray.length; i++) {
+        for(let i = 0; i < roundArray.length; i++) {
           let result = this.rollDie(diceArray[i]);
           runningTotal += result;
         }
     
         return runningTotal;
-      }
+    } */
 }
 module.exports.Game = Game;
