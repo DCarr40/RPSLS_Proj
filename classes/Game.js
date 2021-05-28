@@ -15,16 +15,23 @@ class Game {
         this.roundArray = [1,2,3];  
     }
 
+
     runGame() {
-        for(let i = 0; i < this.roundWinner.length;i++){
-            this.displayRules();
-            this.player1Selection();
-            this.player2Selection();
+
+        this.displayRules();
+        this.player1Selection();
+        this.player2Selection();
+
+        for(let i = 0; i < this.roundArray.length; i++){
             this.player1.chooseGesture();
             this.player2.chooseGesture();
             this.roundGestureComparison();
             this.scoreDisplay();
+            this.scoreDisplay;
         }
+
+        this.displayWinner();
+
     }
 
     displayRules() {
@@ -114,69 +121,13 @@ class Game {
         else{this.player2.score++;console.log("Player 2 scored 1 point and won this round!");return this.player2.score;}
     }
 
+    displayWinner(){
+        if(this.player1.score > this.player2.score){console.log("Player 1 Wins The Game!!!!");}
+        else{console.log("Player 2 Wins The Game!!!!");}
+    }
+
 }
 
 module.exports.Game = Game;
 
-
-/*     displayGameWinner() {
-        if (this.player1.score > this.player2.score) {
-            console.log(`${this.player1.name} wins this game!`);
-        }
-        else {
-            console.log(`${this.player2.name} wins this game!`);
-        }
-        console.log("test");
-    } */
-
-
-
-/*     displayScore() {
-        console.log(`${this.player1.g}'s score is: ${this.player1.score}`)
-    } */
-
-   
-    
-    /*
-
-    increaseScore(){
-        while(this.player1.score < 3 && this.player2.score < 3) {
-            let playerOneTotal = this.playerOne.rollAllDice(this.dice);
-            let playerTwoTotal = this.playerTwo.rollAllDice(this.dice);
-      
-            if(playerOneTotal > playerTwoTotal) {
-              console.log(this.playerOne.name + " wins this round!");
-              this.playerOne.score++;
-            }
-            else if(playerTwoTotal > playerOneTotal) {
-              console.log(this.playerTwo.name + " wins this round!");
-              this.playerTwo.score++;
-            }
-            else {
-              console.log("Wow! You managed to tie after each rolling " + this.dice.length + " dice!");
-            }
-          }
-    }
-
-    playRound(roundArray) {
-
-        let runningTotal = 0;
-    
-        for(let i = 0; i < roundArray.length; i++) {
-          let result = this.rollDie(diceArray[i]);
-          runningTotal += result;
-        }
-    
-        return runningTotal;
-    } */
-
-    /*     bothPlayerGestureSelection(){
-        this.player1.chooseGesture();
-        this.player2.chooseGesture();
-    }
-
-   bothPlayerHumanAiSelection(){
-        this.player1Selection();
-        this.player2Selection();
-    } */
 
