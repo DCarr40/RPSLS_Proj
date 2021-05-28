@@ -5,10 +5,9 @@ const { Player } = require("./Player");
 
 class Ai extends Player {
 
-    constructor(name ) {
-        super(name);
+    constructor() {
+        super();
     }
-
 
     chooseGesture() {
         let random = Math.floor(Math.random() * 5);
@@ -18,8 +17,6 @@ class Ai extends Player {
         console.log(`The Ai chose: ${this.gesturePick}`);
         return this.gesturePick;
     }
-
-
 }
 
 module.exports.Ai = Ai;

@@ -2,11 +2,10 @@
 
 class Player {
 
-    constructor(name) {
+    constructor() {
         this.score = 0;
         this.gestureArray = ["rock","paper","scissors","lizard", "spock"];
         this.gesturePick;
-        //this.choice = gesturePick;
     }
 
 }

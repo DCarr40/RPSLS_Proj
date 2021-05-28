@@ -5,8 +5,8 @@ const { Player } = require("./Player");
 
 class Human extends Player {
 
-    constructor(name) {
-        super(name);
+    constructor() {
+        super();
     }
 
 
@@ -26,10 +26,7 @@ class Human extends Player {
         while (
             !isValid
         )
-
     }
-    
-
 }
 
 module.exports.Human = Human;

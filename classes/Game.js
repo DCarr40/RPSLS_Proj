@@ -10,16 +10,10 @@ class Game {
         this.player1;
         this.player2;
         this.roundWinner = "";
-        this.player1Choice;
-        this.player2Choice;
         this.roundArray = [1,2,3];
         this.playAgain = true; 
         this.scoreCounter = 0;
     }
-
-    /* 
-     Input Validation for askToPlayAgain needed
-     */
 
     runGame() {
        
@@ -169,17 +163,20 @@ class Game {
     }
 
     askToPlayAgain(){
-
+        let exitThisLoop = true;
         do{
-           
+            
             let response = prompt("Would you like to play again? Please type either 'yes' or 'no'").toLowerCase().trim();
             if(response === "yes" || response === "no"){
-                if(response === "no"){this.playAgain = false; console.log("Thanks for playing!!!")}
-                else{console.log("That is an invalid input. Please Try again.")}
+                switch(response){
+                    case "no": this.playAgain = false; exitThisLoop = false; console.log("Thanks for playing!!!");break;
+                    case "yes": exitThisLoop = false; console.log("Awesome! Lets Play Again!");break;
+                    default: console.log("That is an invalid input. Please Try again."); break;
+                }
             }
-            else{console.log("That is an invalid input. Please Try again.")}
+            else{console.log("That is an invalid input. Please Try again.");}
         }
-        while(this.playAgain)
+        while(exitThisLoop)
     }
 
     resetBothPlayersScores(){
