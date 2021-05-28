@@ -18,10 +18,7 @@ class Game {
     }
 
     /* 
-     Validation Input for numbers when choosing players: Complete
-     Validation for choosing human gesture: Complete
-     Validate if the user would like to play again after the game runs
-     Reset the score
+     Input Validation for askToPlayAgain needed
      */
 
     runGame() {
@@ -172,10 +169,17 @@ class Game {
     }
 
     askToPlayAgain(){
-        let response = prompt("Would you like to play again? Please type either 'yes' or 'no'").toLowerCase();
-        if(response === "yes" || response === "no")
-            if(response === "no"){this.playAgain = false; console.log("Thanks for playing!!!")}
-        else{console.log("That is an invalid input. Please Try again.")}
+
+        do{
+           
+            let response = prompt("Would you like to play again? Please type either 'yes' or 'no'").toLowerCase().trim();
+            if(response === "yes" || response === "no"){
+                if(response === "no"){this.playAgain = false; console.log("Thanks for playing!!!")}
+                else{console.log("That is an invalid input. Please Try again.")}
+            }
+            else{console.log("That is an invalid input. Please Try again.")}
+        }
+        while(this.playAgain)
     }
 
     resetBothPlayersScores(){

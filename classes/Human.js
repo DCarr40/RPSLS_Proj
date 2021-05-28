@@ -15,7 +15,7 @@ class Human extends Player {
         let isValid = false;
 
         do {
-            this.gesturePick = prompt("Please choose either rock, paper, scissors, lizard, or spock?").toLowerCase();
+            this.gesturePick = prompt("Please choose either rock, paper, scissors, lizard, or spock?").toLowerCase().trim();
             for (let i of this.gestureArray){  
                 if(this.gesturePick === i ){isValid = true; return this.gesturePick;}
                 else { isValid = false;}
