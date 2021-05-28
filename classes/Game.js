@@ -12,32 +12,41 @@ class Game {
         this.roundWinner = "";
         this.player1Choice;
         this.player2Choice;
-        this.roundArray = [1,2,3];  
+        this.roundArray = [1,2,3];
+        this.playAgain = true; 
     }
 
     /* 
      Validation Input for numbers when choosing players: Complete
      Validation for choosing human gesture: Complete
      Validate if the user would like to play again after the game runs
+     Reset the score
      */
 
     runGame() {
-
+       
         this.displayRules();
-        this.player1Selection();
-        this.player2Selection();
+        2
+        do{
+            
+            this.player1Selection();
+            this.player2Selection();
 
-        for(let i = 0; i < this.roundArray.length; i++){
+            for(let i = 0; i < this.roundArray.length; i++){
             this.player1.chooseGesture();
             this.player2.chooseGesture();
             this.roundGestureComparison();
             this.scoreDisplay();
             this.scoreDisplay;
             this.displayCurrentScore();
+            }
+
+            this.displayWinner();
+            this.askToPlayAgain();
+            this.resetBothPlayersScores();
         }
 
-        this.displayWinner();
-
+        while(this.playAgain)
     }
 
     displayRules() {
@@ -157,6 +166,18 @@ class Game {
     displayCurrentScore() {
         console.log(`Player 1's current score is: ${this.player1.score}`)
         console.log(`Player 2's current score is: ${this.player2.score}`)
+    }
+
+    askToPlayAgain(){
+        let response = prompt("Would you like to play again? Please type either 'yes' or 'no'").toLowerCase();
+        if(response === "yes" || response === "no")
+            if(response === "no"){this.playAgain = false; console.log("Thanks for playing!!!")}
+        else{console.log("That is an invalid input. Please Try again.")}
+    }
+
+    resetBothPlayersScores(){
+        this.player1.score = 0;
+        this.player2.score = 0;
     }
 }
 
