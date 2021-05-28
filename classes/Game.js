@@ -16,6 +16,12 @@ class Game {
     }
 
 
+    /* 
+     Validation Input for numbers when choosing players
+     Validation for choosing human gesture. Right now both values can be undefined or null and return And...It's a tie!
+     Validate if the user would like to play again after the game runs
+     */
+
     runGame() {
 
         this.displayRules();
@@ -53,7 +59,24 @@ class Game {
     }
 
     player1Selection(){
-        this.player1 = parseInt(prompt("Do you want player 1 to be Human or AI? Please type 1 for Human or 2 for AI"));
+        let isValid = false;
+        do {
+            this.player1 = (parseInt(prompt("Do you want player 1 to be Human or AI? Please type '1' for Human or '2' for AI")));
+            if (!isNaN(this.player1)) {
+                if (this.player1 === 1 || this.player1 === 2) {
+                    isValid = true
+                    
+                }
+                else {
+                    console.log("That is an invalid input. Please Try again.");
+                }
+            }
+        }
+        while (
+            !isValid
+        )
+        
+
         switch(this.player1){
             case 1:
                 this.player1 = new Human("Player 1");
@@ -129,5 +152,7 @@ class Game {
 }
 
 module.exports.Game = Game;
+
+
 
 
