@@ -10,34 +10,23 @@ class Human extends Player {
     }
 
 
-    displayCurrentScore() {
-        console.log(`${this.name}'s score is: ${this.score}`)
-    }
-
     chooseGesture() {
-        this.gesturePick = prompt("Please choose either rock, paper, scissors, lizard, or spock?");
-        
-        switch (this.gesturePick) { 
-            case "rock":
-                this.gesturePick = 0;
-                break;
-            case "paper":
-                this.gesturePick = 1;
-                break;
-            case "scissors":
-                this.gesturePick = 2;
-                break;
-            case "lizard":
-                this.gesturePick = 3;
-                break;
-            case "spock":
-                this.gesturePick = 4;
-                break;
+
+        let isValid = false;
+
+        do {
+            this.gesturePick = prompt("Please choose either rock, paper, scissors, lizard, or spock?").toLowerCase();
+            for (let i of this.gestureArray){  
+                if(this.gesturePick === i ){isValid = true; return this.gesturePick;}
+                else { isValid = false;}
+            } 
+            console.log("That is an invalid input. Please Try again.");
         }
 
-        this.gesturePick = this.gestureArray[this.gesturePick];
-        console.log(`The human chose: ${this.gesturePick}`);
-        return this.gesturePick;
+        while (
+            !isValid
+        )
+
     }
     
 

@@ -15,10 +15,9 @@ class Game {
         this.roundArray = [1,2,3];  
     }
 
-
     /* 
      Validation Input for numbers when choosing players: Complete
-     Validation for choosing human gesture. Right now both values can be undefined or null and return And...It's a tie!
+     Validation for choosing human gesture: Complete
      Validate if the user would like to play again after the game runs
      */
 
@@ -34,6 +33,7 @@ class Game {
             this.roundGestureComparison();
             this.scoreDisplay();
             this.scoreDisplay;
+            this.displayCurrentScore();
         }
 
         this.displayWinner();
@@ -59,35 +59,29 @@ class Game {
     }
 
     player1Selection(){
+
         let isValid = false;
+
         do {
             this.player1 = (parseInt(prompt("Do you want player 1 to be Human or AI? Please type '1' for Human or '2' for AI")));
             if (!isNaN(this.player1)) {
-                if (this.player1 === 1 || this.player1 === 2) {
-                    isValid = true
-                    
-                }
-                else {
-                    console.log("That is an invalid input. Please Try again.");
-                }
+                if (this.player1 === 1 || this.player1 === 2) {isValid = true; }
+                else {console.log("That is an invalid input. Please Try again.");}
             }
         }
+
         while (
             !isValid
         )
         
 
         switch(this.player1){
-            case 1:
-                this.player1 = new Human("Player 1");
-                console.log("Welcome Human Player 1");
-                break;
-            case 2:
-                this.player1 = new Ai("Player 1");
-                console.log("Welcome AI Player 1");
-                break;
+            case 1: this.player1 = new Human("Player 1"); console.log("Welcome Human Player 1"); break;
+            case 2: this.player1 = new Ai("Player 1"); console.log("Welcome AI Player 1");break;
         }
+
         return this.player1;
+
     }
 
     player2Selection(){
@@ -97,28 +91,22 @@ class Game {
         do{
             this.player2 = parseInt(prompt("Do you want player 2 to be Human or AI? Please type 1 for Human or 2 for AI"));
             if (!isNaN(this.player2)) {
-                if (this.player2 === 1 || this.player2 === 2) {
-                    isValid = true
-                
-                }
-                else {
-                console.log("That is an invalid input. Please Try again.");
+                if (this.player2 === 1 || this.player2 === 2) {isValid = true}
+                else {console.log("That is an invalid input. Please Try again.");}
             }
         }
+
         while (
             !isValid
         )
 
         switch(this.player2){
-            case 1:
-                this.player2 = new Human("Player 2");
-                console.log("Welcome Human Player 2");
-                break;
-            case 2:
-                this.player2 = new Ai("Player 2");
-                console.log("Welcome AI Player 2");
+            case 1: this.player2 = new Human("Player 2"); console.log("Welcome Human Player 2"); break;
+            case 2: this.player2 = new Ai("Player 2"); console.log("Welcome AI Player 2");
         }
+
         return this.player2;
+
     }
 
     roundGestureComparison() {
@@ -166,6 +154,10 @@ class Game {
         else{console.log("Player 2 Wins The Game!!!!");}
     }
 
+    displayCurrentScore() {
+        console.log(`Player 1's current score is: ${this.player1.score}`)
+        console.log(`Player 2's current score is: ${this.player2.score}`)
+    }
 }
 
 module.exports.Game = Game;
