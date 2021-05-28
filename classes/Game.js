@@ -14,6 +14,7 @@ class Game {
         this.player2Choice;
         this.roundArray = [1,2,3];
         this.playAgain = true; 
+        this.scoreCounter = 0;
     }
 
     /* 
@@ -26,19 +27,19 @@ class Game {
     runGame() {
        
         this.displayRules();
-        2
+        
         do{
             
             this.player1Selection();
             this.player2Selection();
 
-            for(let i = 0; i < this.roundArray.length; i++){
-            this.player1.chooseGesture();
-            this.player2.chooseGesture();
-            this.roundGestureComparison();
-            this.scoreDisplay();
-            this.scoreDisplay;
-            this.displayCurrentScore();
+            while(this.scoreCounter < 2){
+                this.player1.chooseGesture();
+                this.player2.chooseGesture();
+                this.roundGestureComparison();
+                this.scoreDisplay();
+                this.displayCurrentScore();
+                this.scoreCounter += this.endGameAtScoreOf2();
             }
 
             this.displayWinner();
@@ -77,6 +78,7 @@ class Game {
                 if (this.player1 === 1 || this.player1 === 2) {isValid = true; }
                 else {console.log("That is an invalid input. Please Try again.");}
             }
+            else {console.log("That is an invalid input. Please Try again.");}
         }
 
         while (
@@ -103,6 +105,7 @@ class Game {
                 if (this.player2 === 1 || this.player2 === 2) {isValid = true}
                 else {console.log("That is an invalid input. Please Try again.");}
             }
+            else {console.log("That is an invalid input. Please Try again.");}
         }
 
         while (
@@ -132,15 +135,15 @@ class Game {
         switch(this.player1.gesturePick){
             case "rock":
                 if(this.player2.gesturePick === "scissors" || this.player2.gesturePick === "lizard"){this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round"; this.player2.score++;}
+                else{this.roundWinner = "player 2 wins this round";}
                 return this.roundWinner;
             case "paper":
                 if(this.player2.gesturePick === "rock" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round"; this.player2.score++;}
+                else{this.roundWinner = "player 2 wins this round";}
                 return this.roundWinner;
             case "scissors":
                 if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "lizard"){ this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round"; this.player2.score++;}
+                else{this.roundWinner = "player 2 wins this round";}
                 return this.roundWinner;
             case "lizard":
                 if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
@@ -179,6 +182,13 @@ class Game {
         this.player1.score = 0;
         this.player2.score = 0;
     }
+
+    endGameAtScoreOf2(){
+        let i = 0;
+        if(this.player1.score == 2 || this.player2.score == 2){return i = 3;}
+        else{return i = 0;}
+    }
+
 }
 
 module.exports.Game = Game;
