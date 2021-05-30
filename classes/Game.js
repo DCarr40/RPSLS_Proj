@@ -4,6 +4,7 @@ const prompt = require('prompt-sync')();
 const { Human } = require('./Human');
 const { Ai } = require('./Ai');
 
+
 class Game {
 
     constructor() {
@@ -31,6 +32,7 @@ class Game {
                 this.scoreDisplay();
                 this.displayCurrentScore();
                 this.scoreCounter += this.endGameAtScoreOf2();
+                
             }
 
             this.displayWinner();
@@ -42,21 +44,24 @@ class Game {
     }
 
     displayRules() {
-        console.log("Welcome to Rock,Paper,Scissors,Lizard,Spock!");
-        console.log("Two players will chose either rock, paper, scissors, lizard, or Spock.");
-        console.log("A player will win a round depending on wheter the gesture they chose beats the other players gesture.");
-        console.log("Scissors cuts Paper");
-        console.log("Scissors decapitates Lizard");
-        console.log("Rock crushes Lizard");
-        console.log("Rock crushes Scissors");
-        console.log("Paper covers Rock");
-        console.log("Paper disproves Spock");
-        console.log("Lizard poisons Spock");
-        console.log("Lizard eats Paper");
-        console.log("Spock vaporizes Rock");
-        console.log("Spock smashes Scissors");
-        console.log("The player that wins a round will have a point added to their score");
-        console.log("The first player to score 2 points will win the game!");
+        
+        console.log(
+        `Welcome to Rock,Paper,Scissors,Lizard,Spock!
+        Two players will chose either rock, paper, scissors, lizard, or Spock.
+        A player will win a round depending on whether the gesture they chose beats the other players gesture.
+        Scissors cuts Paper
+        Scissors decapitates Lizard
+        Rock crushes Lizard
+        Rock crushes Scissors
+        Paper covers Rock
+        Paper disproves Spock
+        Lizard poisons Spock
+        Lizard eats Paper
+        Spock vaporizes Rock
+        Spock smashes Scissors
+        The player that wins a round will have a point added to their score
+        The first player to score 2 points will win the game!"`);
+
     }
 
     player1Selection(){
@@ -72,9 +77,7 @@ class Game {
             else {console.log("That is an invalid input. Please Try again.");}
         }
 
-        while (
-            !isValid
-        )
+        while (!isValid)
         
 
         switch(this.player1){
@@ -122,28 +125,20 @@ class Game {
                 this.player2.chooseGesture();
             }
         }
-        
+
         switch(this.player1.gesturePick){
             case "rock":
-                if(this.player2.gesturePick === "scissors" || this.player2.gesturePick === "lizard"){this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round";}
-                return this.roundWinner;
+                //console.log(this);
+                //console.log(Object.keys(this));
+                this.justCompare("scissors","lizard");
             case "paper":
-                if(this.player2.gesturePick === "rock" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round";}
-                return this.roundWinner;
+                this.justCompare("rock","spock");
             case "scissors":
-                if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "lizard"){ this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round";}
-                return this.roundWinner;
+                this.justCompare("paper","lizard");
             case "lizard":
-                if(this.player2.gesturePick === "paper" || this.player2.gesturePick === "spock"){this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round"; }
-                return this.roundWinner;
+                this.justCompare("paper","spock");
             case "spock":
-                if(this.player2.gesturePick === "rock" || this.player2.gesturePick === "scissors"){this.roundWinner = "player 1 wins this round"}
-                else{this.roundWinner = "player 2 wins this round"}
-                return this.roundWinner;       
+                this.justCompare("rock","scissors");       
         }
     }
 
@@ -182,6 +177,7 @@ class Game {
     resetBothPlayersScores(){
         this.player1.score = 0;
         this.player2.score = 0;
+        this.scoreCounter = 0;
     }
 
     endGameAtScoreOf2(){
@@ -190,6 +186,11 @@ class Game {
         else{return i = 0;}
     }
 
+    justCompare(gesture1, gesture2){
+        if(this.player2.gesturePick == gesture1 || gesture2 ){this.roundWinner = "player 1 wins this round"}
+        else{ this.roundWinner = "player 2 wins this round";}
+        return this.roundWinner;
+    }
 }
 
 module.exports.Game = Game;
